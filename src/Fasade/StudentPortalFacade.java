@@ -3,27 +3,37 @@ package Fasade;
 import Builder.Builder;
 import Cources.MathCourse;
 import Cources.ProgrammCourse;
-import Decorators.CertificateDecorator;
 import Decorators.Courses;
-import Decorators.GaminificationDecorator;
-import Decorators.MentorSupportDecorater;
+
 import java.util.Scanner;
 public class StudentPortalFacade {
-    private static final Scanner IN = new Scanner(System.in); // НЕ закрываем
+    private static final Scanner IN = new Scanner(System.in);
+    public static int course;
+    public static String name;
+    public static String lastName;
     private Courses selected;
-    public void enrollIntheCourse() {
+    public boolean enrollIntheCourse() {
         System.out.println("Welcome to the My course platform");
         System.out.println("Please write a course name (Math/Program) and press Enter:");
         String choice = IN.nextLine();
+        if(course == 1 && choice.equalsIgnoreCase("Program")) {
+            System.out.println("u are not allowed.It will be allowed in second course");
+            return false;
+        }
+        if(course == 2 && choice.equalsIgnoreCase("Math")) {
+            System.out.println("u are not allowed,This course already passed");
+            return false;
+        }
         if ("Math".equalsIgnoreCase(choice)) {
             selected = new MathCourse();
         } else if ("Program".equalsIgnoreCase(choice) || "Programm".equalsIgnoreCase(choice)) {
             selected = new ProgrammCourse();
         } else {
             System.out.println("Unknown course: " + choice);
-            return;
+            return false;
         }
         System.out.println("You successfully chose " + selected.nameOftheCourse());
+        return true;
     }
     public void startLearning() {
         if (selected == null) {

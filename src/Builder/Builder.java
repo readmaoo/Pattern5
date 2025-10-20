@@ -11,7 +11,7 @@ public class Builder {
     public Builder withCertificate() { this.certificate = true; return this; }
     public Courses build() {
         Courses c = base;
-        if (mentor)        c = new MentorSupportDecorater(c);
+        if (mentor) c = new MentorSupportDecorater(c);
         if (gamification)  c = new GaminificationDecorator(c);
         if (certificate)   c = new CertificateDecorator(c);
         return c;

@@ -1,6 +1,7 @@
 package Decorators;
 
-import java.util.Scanner;
+import Fasade.StudentPortalFacade;
+
 
 public class CertificateDecorator extends decorator {
     public CertificateDecorator(Courses wrapped){
@@ -9,10 +10,7 @@ public class CertificateDecorator extends decorator {
     @Override
     public int mainContent() {
         if(wrapped.isFinished()){
-            System.out.println("Enter u'r name");
-            Scanner scanner = new Scanner(System.in);
-            String name = scanner.nextLine();
-            System.out.println("Student " + name + " Congratulations! U finished the course !");
+            System.out.println("Student " + StudentPortalFacade.name + " " + StudentPortalFacade.lastName + " Congratulations! U finished the course !");
             System.out.println("Certificate of " + " " + nameOftheCourse());
             System.out.println("Amount of points" + " " + GaminificationDecorator.total);
         }
